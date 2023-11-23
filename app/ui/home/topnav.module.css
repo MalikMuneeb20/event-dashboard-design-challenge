@@ -1,0 +1,25 @@
+.container {
+  background-color: var(--top-nav-background);
+}
+
+.searchContainer {
+  background-color: var(--search-background);
+}
+
+.iconColor {
+  color: #3d4756;
+}
+
+.hamBurger {
+  background: var(--hamburger-menu);
+}
+
+.logoSection {
+  height: 60px;
+  filter: brightness(0) invert(100%);
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+  width: 100vh;
+}
