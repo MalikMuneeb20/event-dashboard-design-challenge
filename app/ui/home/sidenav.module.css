@@ -1,0 +1,19 @@
+.container {
+  background: var(--top-nav-background);
+  /* border: 1px solid red; */
+}
+
+.listIcons {
+}
+
+.selectedIcon {
+  background-color: var(--selected-icon-bg);
+  color: var(--selected-icon);
+}
+
+.unselectedIcon {
+}
+
+.unselectedIcon:hover {
+  background-color: var(--selected-icon-bg);
+}

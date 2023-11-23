@@ -4,6 +4,7 @@ import { inter } from '@/app/ui/fonts';
 import './globals.css';
 import TopNav from '@/app/ui/home/topnav';
 import { useState } from 'react';
+import SideNav from './ui/home/sidenav';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -15,19 +16,22 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  // const [clicked, setClicked] = useState(false);
-
-  // const toggleMenu = () => {
-  //   setClicked(!clicked);
-  // };
-
   return (
     <html lang="en">
-      <body className={`${inter.className} antialiased`}>
+      <body className={`${inter.className} antialiased flex flex-col h-screen`}>
         <div>
           <TopNav />
         </div>
-        <div>{children}</div>
+        <div className="p-2 flex-row h-full hidden md:flex">
+          <div className="p-2 ">
+            <SideNav />
+          </div>
+          <div style={{ border: '1px solid black' }} className="w-full pl-5">
+            {children}
+          </div>
+        </div>
+
+        <div className="block md:hidden">{children}</div>
       </body>
     </html>
   );

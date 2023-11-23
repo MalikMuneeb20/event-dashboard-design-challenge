@@ -8,6 +8,10 @@
   --top-nav-background: #fff;
   --search-background: #f9fafc;
   --hamburger-menu: #5041bc;
+  --selected-icon-bg: #eceaff;
+  --selected-icon: #5041bc;
+  --unselected-icon-bg: #f8f9fb;
+  --unselected-icon: #3d4756;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -17,6 +21,10 @@
     --top-nav-background: #fff;
     --search-background: #f9fafc;
     --hamburger-menu: #5041bc;
+    --selected-icon-bg: #eceaff;
+    --selected-icon: #5041bc;
+    --unselected-icon-bg: #f8f9fb;
+    --unselected-icon: #3d4756;
   }
 }
 
