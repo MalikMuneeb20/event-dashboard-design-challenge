@@ -1,3 +1,4 @@
+'use client';
 import React, { useState } from 'react';
 import classes from './dashboard.module.css';
 import { FaRegHeart, FaHeart } from 'react-icons/fa';
