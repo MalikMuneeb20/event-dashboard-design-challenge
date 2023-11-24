@@ -16,7 +16,7 @@ interface customRowItems {
   date: String;
   location: String;
 }
-const rows = Array.from({ length: 50 }, (_, index) => index + 1);
+const rows = Array.from({ length: 12 }, (_, index) => index + 1);
 const CustomRow = ({ id, name, time, date, location }: customRowItems) => {
   const [fav, setFav] = useState(false);
 
@@ -46,7 +46,7 @@ const CustomRow = ({ id, name, time, date, location }: customRowItems) => {
 
 const EventsList = () => {
   return (
-    <div className="relative overflow-x-auto overflow-y-auto ">
+    <div className="relative overflow-x-auto  overflow-y-auto ">
       <table
         className={`${classes.textColor} w-full text-sm text-left rtl:text-right  `}
       >

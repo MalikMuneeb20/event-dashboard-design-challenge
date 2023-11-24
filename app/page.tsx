@@ -3,6 +3,8 @@ import Image from 'next/image';
 import EventsList from './ui/dashboard/events-list';
 import { IoFilterSharp } from 'react-icons/io5';
 import classes from './dashboard.module.css';
+import EventsCounter from './ui/dashboard/events-counter';
+import EventOfMonth from './ui/dashboard/event-of-month';
 
 export default function Dashboard() {
   return (
@@ -22,7 +24,7 @@ export default function Dashboard() {
           <EventsList />
         </div>
         <div className="border-2 mt-4 border-solid border-indigo-500 h-1/4">
-          World
+          <EventsCounter />
         </div>
       </div>
       <div className="flex flex-col border-2 ml:0 lg:ml-4 border-solid border-indigo-500 h-full w-full lg:w-2/6">
@@ -30,7 +32,7 @@ export default function Dashboard() {
           Hello
         </div>
         <div className="hidden lg:block border-2 mt-4 border-solid border-indigo-500 h-2/5">
-          World
+          <EventOfMonth />
         </div>
       </div>
     </main>

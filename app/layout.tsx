@@ -19,14 +19,17 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} antialiased flex flex-col h-screen`}>
-        <div>
+        <div className="h-20">
           <TopNav />
         </div>
         <div className="pl-6 pr-6 pt-4 pb-4 flex-row h-full hidden md:flex">
           <div className="pr-2">
             <SideNav />
           </div>
-          <div style={{ border: '1px solid black' }} className="w-full  pl-5">
+          <div
+            style={{ border: '1px solid black' }}
+            className="h-full  w-full  pl-5"
+          >
             {children}
           </div>
         </div>

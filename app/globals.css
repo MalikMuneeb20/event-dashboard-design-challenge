@@ -12,6 +12,7 @@
   --selected-icon: #5041bc;
   --unselected-icon-bg: #f8f9fb;
   --unselected-icon: #3d4756;
+  --table-inner-text: #797d8c;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -25,6 +26,7 @@
     --selected-icon: #5041bc;
     --unselected-icon-bg: #f8f9fb;
     --unselected-icon: #3d4756;
+    --table-inner-text: #797d8c;
   }
 }
 

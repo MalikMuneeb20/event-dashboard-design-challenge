@@ -21,10 +21,13 @@ const SideNav = () => {
       className={`${classes.container} flex h-full flex-col px-3 py-4 md:px-2 rounded-full`}
     >
       <>
-        {links.map((link) => {
+        {links.map((link, index) => {
           const LinkIcon = link.icon;
           return (
-            <div className={`${classes.listIcons} p-3 rounded-full`}>
+            <div
+              key={index}
+              className={`${classes.listIcons} p-3 rounded-full`}
+            >
               <Link
                 key={link.name}
                 href={link.href}
