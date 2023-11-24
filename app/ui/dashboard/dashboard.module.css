@@ -2,11 +2,14 @@
   color: var(--unselected-icon);
 }
 
-.tableColor {
+.tableColor,
+.upcomingColor {
   background-color: var(--top-nav-background);
 }
 
-.tableColor:hover {
+.tableColor:hover,
+.border:hover,
+.eventOfMonth:hover {
   background-color: var(--selected-icon-bg);
   cursor: pointer;
 }
@@ -38,4 +41,8 @@
 
 .eventText {
   color: var(--selected-icon);
+}
+
+.border {
+  border: 2px solid var(--border-outline);
 }

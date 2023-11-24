@@ -13,6 +13,7 @@
   --unselected-icon-bg: #f8f9fb;
   --unselected-icon: #3d4756;
   --table-inner-text: #797d8c;
+  --border-outline: #f3f3f3;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -27,6 +28,7 @@
     --unselected-icon-bg: #f8f9fb;
     --unselected-icon: #3d4756;
     --table-inner-text: #797d8c;
+    --border-outline: #f3f3f3;
   }
 }
 

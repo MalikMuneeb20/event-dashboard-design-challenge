@@ -26,12 +26,7 @@ export default function RootLayout({
           <div className="pr-2">
             <SideNav />
           </div>
-          <div
-            style={{ border: '1px solid black' }}
-            className="h-full  w-full  pl-5"
-          >
-            {children}
-          </div>
+          <div className="h-full  w-full  pl-5">{children}</div>
         </div>
 
         <div className="block md:hidden">{children}</div>

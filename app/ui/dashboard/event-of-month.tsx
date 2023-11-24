@@ -10,7 +10,7 @@ interface EventOfMonthItems {
 const EventOfMonthCard = ({ title, count }: EventOfMonthItems) => {
   return (
     <div
-      className={`${classes.eventClass} border-2 w-full border-solid flex flex-col px-6 py-7 justify-evenly border-indigo-500 rounded-xl h-full`}
+      className={`${classes.eventClass}  w-full  flex flex-col px-6 py-7 justify-evenly  rounded-xl h-full`}
     >
       <div className="flex  justify-between">
         <div className={`text-3xl text-white font-bold`}>{title}</div>
@@ -21,7 +21,9 @@ const EventOfMonthCard = ({ title, count }: EventOfMonthItems) => {
           height={80}
         />
       </div>
-      <div className={`flex flex-col px-4 py-4 rounded-xl bg-white h-3/5`}>
+      <div
+        className={`${classes.eventOfMonth} flex flex-col px-4 py-4 rounded-xl bg-white h-3/5`}
+      >
         <div className={`flex flex-row  font-bold text-lg`}>
           <div className={`${classes.eventText}`}>Web Development</div>
         </div>
