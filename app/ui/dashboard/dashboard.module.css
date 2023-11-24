@@ -1,0 +1,32 @@
+.textColor {
+  color: var(--unselected-icon);
+}
+
+.tableColor {
+  background-color: var(--top-nav-background);
+}
+
+.tableColor:hover {
+  background-color: var(--selected-icon-bg);
+}
+
+.td {
+  border-style: solid none;
+  color: var(--table-inner-text);
+}
+
+.td:first-child {
+  border-left-style: solid;
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+}
+
+.td:last-child {
+  border-right-style: solid;
+  border-bottom-right-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+.unselectedIcon {
+  color: var(--selected-icon);
+}

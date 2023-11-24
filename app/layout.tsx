@@ -22,11 +22,11 @@ export default function RootLayout({
         <div>
           <TopNav />
         </div>
-        <div className="pl-6 pr-6  pt-4 pb-4 flex-row h-full hidden md:flex">
-          <div className="pr-2 ">
+        <div className="pl-6 pr-6 pt-4 pb-4 flex-row h-full hidden md:flex">
+          <div className="pr-2">
             <SideNav />
           </div>
-          <div style={{ border: '1px solid black' }} className="w-full pl-5">
+          <div style={{ border: '1px solid black' }} className="w-full  pl-5">
             {children}
           </div>
         </div>

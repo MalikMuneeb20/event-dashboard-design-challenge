@@ -10,7 +10,7 @@ import { FaRegHeart } from 'react-icons/fa';
 
 const links = [
   { name: 'Dashboard', href: '/', icon: FiGrid },
-  { name: 'Favourite Events', href: '/favourites', icon: FaRegHeart },
+  { name: 'Favourite', href: '/favourites', icon: FaRegHeart },
 ];
 
 const SideNav = () => {
