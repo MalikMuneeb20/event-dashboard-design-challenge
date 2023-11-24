@@ -1,7 +1,7 @@
 'use client';
 import Image from 'next/image';
 import React, { useState } from 'react';
-import classes from '@/app/ui/home/topnav.module.css';
+import classes from '@/app/ui/navbar/topnav.module.css';
 import { FaSearch } from 'react-icons/fa';
 import HamburgerMenu from './hamburger-menu';
 

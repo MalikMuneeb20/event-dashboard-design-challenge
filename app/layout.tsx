@@ -2,9 +2,9 @@ import type { Metadata } from 'next';
 
 import { inter } from '@/app/ui/fonts';
 import './globals.css';
-import TopNav from '@/app/ui/home/topnav';
+import TopNav from '@/app/ui/navbar/topnav';
 import { useState } from 'react';
-import SideNav from './ui/home/sidenav';
+import SideNav from './ui/navbar/sidenav';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
