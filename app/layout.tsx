@@ -5,6 +5,7 @@ import './globals.css';
 import TopNav from '@/app/ui/navbar/topnav';
 import { useState } from 'react';
 import SideNav from './ui/navbar/sidenav';
+import { ReduxProvider } from './redux/provider';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -19,17 +20,19 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} antialiased flex flex-col h-screen`}>
-        <div className="h-20">
-          <TopNav />
-        </div>
-        <div className="pl-6 pr-6 pt-4 pb-4 flex-row h-full hidden md:flex">
-          <div className="pr-2">
-            <SideNav />
+        <ReduxProvider>
+          <div className="h-20">
+            <TopNav />
           </div>
-          <div className="h-full  w-full  pl-5">{children}</div>
-        </div>
+          <div className="pl-6 pr-6 pt-4 pb-4 flex-row h-full hidden md:flex">
+            <div className="pr-2">
+              <SideNav />
+            </div>
+            <div className="h-full  w-full  pl-5">{children}</div>
+          </div>
 
-        <div className="block md:hidden">{children}</div>
+          <div className="block md:hidden">{children}</div>
+        </ReduxProvider>
       </body>
     </html>
   );

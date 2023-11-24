@@ -1,0 +1,5 @@
+client secret "3oXPFfJjHMI72qztNJv_-NTEZz5O11wmqzHMjKhOfnZRn7JHg8-0TA"
+
+client id "zsdkdRlCRsg"
+
+access token "H428WwrA754f-mazLxuRXdDbD-vzd4dNphpl-tYW"
