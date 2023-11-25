@@ -42,6 +42,7 @@ const CustomRow = ({ result }: CustomRowProps) => {
   const hours = dateTime.getHours();
   const minutes = dateTime.getMinutes();
   const seconds = dateTime.getSeconds();
+  const padWithZero = (value: number) => (value < 10 ? `0${value}` : value);
 
   const dispatch = useDispatch<AppDispatch>();
 
