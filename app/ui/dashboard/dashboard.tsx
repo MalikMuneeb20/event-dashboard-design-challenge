@@ -18,8 +18,13 @@ import {
   setUpcomingEvents,
 } from '@/app/redux/features/upcoming-event-slice';
 import { setLoading } from '@/app/redux/features/loader-slice';
+import FilterPopup from './filter-popup';
+import Modal from './modal';
 
 export default function DashboardPage() {
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [show, setShow] = useState(true);
+
   const isLoading: boolean = useAppSelector(
     (state) => state.loadingReducer.loading
   );
@@ -51,19 +56,58 @@ export default function DashboardPage() {
         <Loader />
       ) : (
         <div className="flex overflow-auto flex-col-reverse pl-4 pr-4 lg:pl-0 lg:pr-0 lg:flex-row w-full">
+          <Modal />
           <div className="flex flex-col h-full w-full">
             <div
-              className={`${classes.customEventHeight} flex flex-col w-full   overflow-y-auto`}
+              className={`${classes.customEventHeight} flex flex-col w-full relative overflow-y-auto`}
             >
               <div className="flex justify-between pb-5 px-5 items-center">
                 <div className="text-xl font-semibold">Events List</div>
-                <IoFilterSharp
-                  className={`${classes.iconColor} `}
-                  size={25}
-                  // onClick={() => {
-                  //   console.log('clicked');
-                  // }}
-                />
+                <div>
+                  <FilterPopup />
+                </div>
+              </div>
+              <div
+                id="dropdown"
+                className="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700"
+              >
+                <ul
+                  className="py-2 text-sm text-gray-700 dark:text-gray-200"
+                  aria-labelledby="dropdownDefaultButton"
+                >
+                  <li>
+                    <a
+                      href="#"
+                      className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                    >
+                      Dashboard
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                    >
+                      Settings
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                    >
+                      Earnings
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                    >
+                      Sign out
+                    </a>
+                  </li>
+                </ul>
               </div>
 
               <EventsList />

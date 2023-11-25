@@ -22,6 +22,9 @@ interface InitialUpcomingState {
 
 interface LoadingState {
   loading: boolean;
+  isPopup: boolean;
+  showModal: boolean;
+  event: EventState;
 }
 
 export type { LoadingState, InitialState, EventState, InitialUpcomingState };

@@ -7,6 +7,10 @@ import { AppDispatch, useAppSelector } from '@/app/redux/store';
 import { addEventtoFavourite } from '@/app/redux/features/event-slice';
 import { addEventToFavouriteEvents } from '@/app/redux/features/favourite-event-slice';
 import { addUpcomingEventtoFavourite } from '@/app/redux/features/upcoming-event-slice';
+import {
+  addEventToModal,
+  setIsModelOpen,
+} from '@/app/redux/features/loader-slice';
 
 interface CustomRowItems {
   id: string;
@@ -41,11 +45,15 @@ const CustomUpcomingEventCard = ({ result }: CustomRowProps) => {
     dispatch(addUpcomingEventtoFavourite({ id: result.id }));
   };
 
+  const handleOpenModal = async () => {
+    dispatch(setIsModelOpen());
+    dispatch(addEventToModal({ result }));
+  };
   return (
     <div
       className={`${classes.border} flex px-4 py-2 mb-2 item-center justify-between rounded-xl`}
     >
-      <div className={`flex flex-col`}>
+      <div onClick={() => handleOpenModal()} className={`flex flex-col`}>
         <div className={`text-md`}>{result.title}</div>
         <div className={`text-xs`}>{`${day}-${month}-${year}, ${padWithZero(
           hours

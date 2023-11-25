@@ -11,7 +11,11 @@ import {
 } from '@/app/redux/features/favourite-event-slice';
 import { addEventtoFavourite } from '../../redux/features/event-slice';
 import { addUpcomingEventtoFavourite } from '../../redux/features/upcoming-event-slice';
-import { setLoading } from '../../redux/features/loader-slice';
+import {
+  addEventToModal,
+  setIsModelOpen,
+  setLoading,
+} from '../../redux/features/loader-slice';
 import Loader from '../../ui/dashboard/loader';
 
 const Spacer = () => {
@@ -56,17 +60,39 @@ const CustomRow = ({ result }: CustomRowProps) => {
     dispatch(addUpcomingEventtoFavourite({ id: result.id }));
   };
 
+  const handleOpenModal = async () => {
+    dispatch(setIsModelOpen());
+    dispatch(addEventToModal({ result }));
+  };
   return (
     <tr className={`${classes.tableColor} rounded-t`}>
-      <td scope="row" className={`${classes.td} px-6 py-4 font-semibold`}>
+      <td
+        onClick={() => handleOpenModal()}
+        scope="row"
+        className={`${classes.td} px-6 py-4 font-semibold`}
+      >
         {result.rank.toString()}
       </td>
-      <td className={`${classes.td} px-6 py-4`}>{result.title}</td>
-      <td className={`${classes.td} px-6 py-4`}>{`${padWithZero(
-        hours
-      )}:${padWithZero(minutes)}`}</td>
-      <td className={`${classes.td} px-6 py-4`}>{`${day}-${month}-${year}`}</td>
-      <td className={`${classes.td} px-6 py-4`}>{result.country}</td>
+      <td
+        onClick={() => handleOpenModal()}
+        className={`${classes.td} px-6 py-4`}
+      >
+        {result.title}
+      </td>
+      <td
+        onClick={() => handleOpenModal()}
+        className={`${classes.td} px-6 py-4`}
+      >{`${padWithZero(hours)}:${padWithZero(minutes)}`}</td>
+      <td
+        onClick={() => handleOpenModal()}
+        className={`${classes.td} px-6 py-4`}
+      >{`${day}-${month}-${year}`}</td>
+      <td
+        onClick={() => handleOpenModal()}
+        className={`${classes.td} px-6 py-4`}
+      >
+        {result.country}
+      </td>
       <td className={`${classes.td} float-right px-6 py-4`}>
         {!isFav ? (
           <FaRegHeart className={classes.unselectedIcon} onClick={toggleFav} />
