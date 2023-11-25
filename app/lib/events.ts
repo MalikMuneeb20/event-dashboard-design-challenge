@@ -1,5 +1,6 @@
 export async function fetchEvents() {
   try {
+    // const accessToken = process.env.ACCESS_TOKEN;
     const response = await fetch('https://api.predicthq.com/v1/events/', {
       headers: {
         Authorization: 'Bearer H428WwrA754f-mazLxuRXdDbD-vzd4dNphpl-tYW',

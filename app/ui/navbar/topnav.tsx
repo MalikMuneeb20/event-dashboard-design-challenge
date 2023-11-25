@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import classes from '@/app/ui/navbar/topnav.module.css';
 import { FaSearch } from 'react-icons/fa';
 import HamburgerMenu from './hamburger-menu';
-
+import { FaSort } from 'react-icons/fa';
 import { fetchEvents, searchEvents } from '@/app/lib/events';
 import { Suspense, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';

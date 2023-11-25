@@ -1,7 +1,7 @@
 'use client';
 import React, { Suspense, useEffect, useState } from 'react';
 import classes from './dashboard.module.css';
-import { FaRegHeart, FaHeart } from 'react-icons/fa';
+import { FaRegHeart, FaHeart, FaSort } from 'react-icons/fa';
 import { fetchEvents } from '@/app/lib/events';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, useAppSelector } from '@/app/redux/store';
@@ -13,6 +13,7 @@ import {
 import {
   setEvents,
   addEventtoFavourite,
+  sortEventinOrder,
 } from '@/app/redux/features/event-slice';
 import { addUpcomingEventtoFavourite } from '@/app/redux/features/upcoming-event-slice';
 import {
@@ -111,6 +112,18 @@ const CustomRow = ({ result }: CustomRowProps) => {
 const EventsList = () => {
   const results = useAppSelector((state) => state.eventsReducer.value);
   const count = useAppSelector((state) => state.eventsReducer.count);
+  const [sort, setSort] = useState(true);
+  const dispatch = useDispatch<AppDispatch>();
+
+  const toogleSort = async () => {
+    console.log('consol');
+    dispatch(
+      sortEventinOrder({
+        sortOrder: sort ? 'asc' : 'desc',
+      })
+    );
+    setSort(!sort);
+  };
 
   return (
     <div className="relative overflow-x-auto h-full overflow-y-auto ">
@@ -121,7 +134,18 @@ const EventsList = () => {
           <thead className="text-s uppercase bg-gray-50 bg-transparent border-b-2">
             <tr>
               <th scope="col" className="px-6 py-3">
-                #
+                <div className="flex ">
+                  <div className={`pr-3`}># </div>
+                  <div>
+                    <FaSort
+                      onClick={() => {
+                        toogleSort();
+                      }}
+                      className={`${classes.eventText} cursor-pointer`}
+                      size={15}
+                    />
+                  </div>
+                </div>
               </th>
               <th scope="col" className="px-6 py-3">
                 Name

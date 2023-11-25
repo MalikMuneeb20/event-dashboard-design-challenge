@@ -53,8 +53,21 @@ export const events = createSlice({
         }
       });
     },
+    sortEventinOrder: (
+      state,
+      action: PayloadAction<{ sortOrder: 'asc' | 'desc' }>
+    ) => {
+      const { sortOrder } = action.payload;
+
+      state.value.sort((a: EventState, b: EventState) => {
+        const order = sortOrder === 'asc' ? 1 : -1;
+
+        return (a.rank - b.rank) * order;
+      });
+    },
   },
 });
 
-export const { setEvents, addEventtoFavourite } = events.actions;
+export const { setEvents, addEventtoFavourite, sortEventinOrder } =
+  events.actions;
 export default events.reducer;
