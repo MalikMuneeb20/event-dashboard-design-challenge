@@ -6,7 +6,10 @@ import { fetchEvents } from '@/app/lib/events';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, useAppSelector } from '@/app/redux/store';
 
-import { addEventToFavouriteEvents } from '@/app/redux/features/favourite-event-slice';
+import {
+  addEventToFavouriteEvents,
+  setFavEvents,
+} from '@/app/redux/features/favourite-event-slice';
 import {
   setEvents,
   addEventtoFavourite,
@@ -37,6 +40,15 @@ interface CustomRowProps {
 const CustomRow = ({ result }: CustomRowProps) => {
   const [isFav, setIsFav] = useState(result.favourite);
 
+  const dateTime = new Date(result.start);
+  const day = dateTime.getDate();
+  const year = dateTime.getFullYear();
+  const month = dateTime.getMonth() + 1;
+  const hours = dateTime.getHours();
+  const minutes = dateTime.getMinutes();
+  const seconds = dateTime.getSeconds();
+  const padWithZero = (value: number) => (value < 10 ? `0${value}` : value);
+
   const dispatch = useDispatch<AppDispatch>();
 
   const toggleFav = () => {
@@ -51,8 +63,10 @@ const CustomRow = ({ result }: CustomRowProps) => {
         {result.rank.toString()}
       </td>
       <td className={`${classes.td} px-6 py-4`}>{result.title}</td>
-      <td className={`${classes.td} px-6 py-4`}>{result.start}</td>
-      <td className={`${classes.td} px-6 py-4`}>{result.start}</td>
+      <td className={`${classes.td} px-6 py-4`}>{`${padWithZero(
+        hours
+      )}:${padWithZero(minutes)}`}</td>
+      <td className={`${classes.td} px-6 py-4`}>{`${day}-${month}-${year}`}</td>
       <td className={`${classes.td} px-6 py-4`}>{result.country}</td>
       <td className={`${classes.td} float-right px-6 py-4`}>
         {!isFav ? (
@@ -65,21 +79,6 @@ const CustomRow = ({ result }: CustomRowProps) => {
   );
 };
 const EventsList = () => {
-  const dispatch = useDispatch<AppDispatch>();
-
-  useEffect(() => {
-    const fetchAndDispatchEvents = async () => {
-      try {
-        const events = await fetchEvents();
-        dispatch(setEvents({ count: events.count, results: events.results }));
-      } catch (error) {
-        console.error('Error fetching events:', error);
-      }
-    };
-
-    fetchAndDispatchEvents();
-  }, [dispatch]);
-
   const results = useAppSelector((state) => state.eventsReducer.value);
   const count = useAppSelector((state) => state.eventsReducer.count);
 

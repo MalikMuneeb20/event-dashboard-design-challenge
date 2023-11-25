@@ -7,6 +7,7 @@ import EventOfMonth from './ui/dashboard/event-of-month';
 import UpcomingEvents from './ui/dashboard/upcoming-events';
 import { fetchEvents } from './lib/events';
 import { Suspense } from 'react';
+import DashboardPage from './ui/dashboard/dashboard';
 
 // export async function fetchEvents() {
 
@@ -31,7 +32,7 @@ export default async function Dashboard() {
   // const events = await fetchEvents();
   return (
     <main className="flex flex-col-reverse lg:flex-row h-full justify-between   ">
-      <div className="flex flex-col     h-full w-full">
+      {/* <div className="flex flex-col     h-full w-full">
         <div className=" flex flex-col  h-full w-full   overflow-y-auto">
           <div className="flex justify-between pb-5 px-5 items-center">
             <div className="text-xl font-semibold">Events List</div>
@@ -60,7 +61,8 @@ export default async function Dashboard() {
         <div className="hidden lg:block  mt-4   h-2/5">
           <EventOfMonth />
         </div>
-      </div>
+      </div> */}
+      <DashboardPage />
     </main>
   );
 }

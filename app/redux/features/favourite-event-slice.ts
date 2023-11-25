@@ -21,25 +21,23 @@ const initialState: InitialState = {
   value: [],
 };
 
+const loadFromLocalStorage = (): InitialState => {
+  const storedData = localStorage.getItem('favEvents');
+  return storedData ? JSON.parse(storedData) : { favCount: 0, value: [] };
+};
+
+const saveToLocalStorage = (state: InitialState) => {
+  localStorage.setItem('favEvents', JSON.stringify(state));
+};
+
 export const favEvents = createSlice({
   name: 'favEvents',
   initialState,
   reducers: {
-    setFavEvents: (state, action: PayloadAction<{ results: EventState[] }>) => {
-      state.favCount = 0;
-      action.payload.results.forEach((result: EventState) => {
-        state.value.push({
-          id: result.id,
-          title: result.title,
-          rank: result.rank,
-          start: result.start,
-          country: result.country,
-          category: result.category,
-          description: result.description,
-          favourite: result.favourite,
-        });
-        state.favCount += 1;
-      });
+    setFavEvents: (state) => {
+      const loadedState = loadFromLocalStorage();
+      state.favCount = loadedState.favCount;
+      state.value = loadedState.value;
     },
     addEventToFavouriteEvents: (
       state,
@@ -67,6 +65,7 @@ export const favEvents = createSlice({
         });
         state.favCount = state.favCount + 1;
       }
+      saveToLocalStorage(state);
     },
   },
 });

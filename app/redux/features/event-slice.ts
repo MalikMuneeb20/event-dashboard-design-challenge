@@ -21,6 +21,11 @@ const initialState: InitialState = {
   value: [],
 };
 
+const loadFromLocalStorage = (): InitialState => {
+  const storedData = localStorage.getItem('favEvents');
+  return storedData ? JSON.parse(storedData) : { favCount: 0, value: [] };
+};
+
 export const events = createSlice({
   name: 'events',
   initialState,
@@ -29,9 +34,14 @@ export const events = createSlice({
       state,
       action: PayloadAction<{ count: number; results: EventState[] }>
     ) => {
+      const loadedState = loadFromLocalStorage();
       console.log(action.payload.count);
       state.count = action.payload.count;
       action.payload.results.forEach((result: EventState) => {
+        const existingEvent = loadedState.value.find(
+          (event) => event.id === result.id
+        );
+
         state.value.push({
           title: result.title,
           id: result.id,
@@ -40,7 +50,7 @@ export const events = createSlice({
           country: result.country,
           category: result.category,
           description: result.description,
-          favourite: false,
+          favourite: existingEvent ? existingEvent.favourite : false,
         });
       });
     },
