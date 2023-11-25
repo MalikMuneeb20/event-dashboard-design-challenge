@@ -5,7 +5,12 @@ import { FaRegHeart, FaHeart } from 'react-icons/fa';
 import { fetchEvents } from '@/app/lib/events';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, useAppSelector } from '@/app/redux/store';
-import { setEvents } from '@/app/redux/features/event-slice';
+
+import { addEventToFavouriteEvents } from '@/app/redux/features/favourite-event-slice';
+import {
+  setEvents,
+  addEventtoFavourite,
+} from '@/app/redux/features/event-slice';
 
 const Spacer = () => {
   return (
@@ -15,33 +20,42 @@ const Spacer = () => {
   );
 };
 
-interface customRowItems {
-  id: Number;
-  name: String;
-  time: String;
-  date: String;
-  location: String;
+interface CustomRowItems {
+  id: string;
+  title: string;
+  rank: number;
+  start: string;
+  country: string;
+  category: string;
+  description: string;
+  favourite: boolean;
+}
+interface CustomRowProps {
+  result: CustomRowItems;
 }
 
-const rows = Array.from({ length: 12 }, (_, index) => index + 1);
-const CustomRow = ({ id, name, time, date, location }: customRowItems) => {
-  const [fav, setFav] = useState(false);
+const CustomRow = ({ result }: CustomRowProps) => {
+  const [isFav, setIsFav] = useState(result.favourite);
+
+  const dispatch = useDispatch<AppDispatch>();
 
   const toggleFav = () => {
-    setFav(!fav);
+    dispatch(addEventtoFavourite({ id: result.id }));
+    dispatch(addEventToFavouriteEvents({ result }));
+    setIsFav(!isFav);
   };
 
   return (
     <tr className={`${classes.tableColor} rounded-t`}>
       <td scope="row" className={`${classes.td} px-6 py-4 font-semibold`}>
-        {id.toString()}
+        {result.rank.toString()}
       </td>
-      <td className={`${classes.td} px-6 py-4`}>{name}</td>
-      <td className={`${classes.td} px-6 py-4`}>{time}</td>
-      <td className={`${classes.td} px-6 py-4`}>{date}</td>
-      <td className={`${classes.td} px-6 py-4`}>{location}</td>
+      <td className={`${classes.td} px-6 py-4`}>{result.title}</td>
+      <td className={`${classes.td} px-6 py-4`}>{result.start}</td>
+      <td className={`${classes.td} px-6 py-4`}>{result.start}</td>
+      <td className={`${classes.td} px-6 py-4`}>{result.country}</td>
       <td className={`${classes.td} float-right px-6 py-4`}>
-        {!fav ? (
+        {!isFav ? (
           <FaRegHeart className={classes.unselectedIcon} onClick={toggleFav} />
         ) : (
           <FaHeart className={`text-red-600`} onClick={toggleFav} />
@@ -50,19 +64,14 @@ const CustomRow = ({ id, name, time, date, location }: customRowItems) => {
     </tr>
   );
 };
-
 const EventsList = () => {
   const dispatch = useDispatch<AppDispatch>();
-  useAppSelector((state) => state.eventsReducer.value);
+
   useEffect(() => {
     const fetchAndDispatchEvents = async () => {
       try {
         const events = await fetchEvents();
         dispatch(setEvents({ count: events.count, results: events.results }));
-        // setResults(useAppSelector((state) => state.eventsReducer.value));
-        const temp = useAppSelector((state) => state.eventsReducer.count);
-
-        // setCount(temp);
       } catch (error) {
         console.error('Error fetching events:', error);
       }
@@ -83,7 +92,7 @@ const EventsList = () => {
           <thead className="text-s uppercase bg-gray-50 bg-transparent border-b-2">
             <tr>
               <th scope="col" className="px-6 py-3">
-                # {count}
+                #
               </th>
               <th scope="col" className="px-6 py-3">
                 Name
@@ -102,16 +111,19 @@ const EventsList = () => {
           </thead>
           <tbody className="text-s font-light pt-5">
             <Spacer />
-            {results.map((index) => (
+            {results.map((result) => (
               <React.Fragment>
                 <CustomRow
-                  id={index.rank}
-                  name={index.title}
-                  time={index.start}
-                  date={index.start}
-                  location={index.country}
+                  result={result}
+                  // id={index.id}
+                  // name={index.title}
+                  // time={index.start}
+                  // date={index.start}
+                  // location={index.country}
+                  // favourite={index.favourite}
+                  // rank={index.rank}
                 />
-                <Spacer key={`spacer-${index}`} />
+                <Spacer />
               </React.Fragment>
             ))}
           </tbody>

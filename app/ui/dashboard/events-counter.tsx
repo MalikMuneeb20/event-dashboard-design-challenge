@@ -1,5 +1,7 @@
+'use client';
 import React from 'react';
 import classes from './dashboard.module.css';
+import { AppDispatch, useAppSelector } from '@/app/redux/store';
 
 interface countCardItems {
   title: String;
@@ -18,11 +20,13 @@ const CountCard = ({ title, count }: countCardItems) => {
 };
 
 const EventsCounter = () => {
+  const count = useAppSelector((state) => state.eventsReducer.count);
+  const favCount = useAppSelector((state) => state.favEventsReducer.favCount);
   return (
     <div className="flex justify-between h-full">
-      <CountCard title={'All Events'} count={2500} />
+      <CountCard title={'All Events'} count={count} />
       <CountCard title={'This Month Events'} count={30} />
-      <CountCard title={'Favourite Events'} count={25} />
+      <CountCard title={'Favourite Events'} count={favCount} />
     </div>
   );
 };

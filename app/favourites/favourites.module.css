@@ -1,0 +1,48 @@
+.textColor {
+  color: var(--unselected-icon);
+}
+
+.tableColor,
+.upcomingColor {
+  background-color: var(--top-nav-background);
+}
+
+.tableColor:hover,
+.border:hover,
+.eventOfMonth:hover {
+  background-color: var(--selected-icon-bg);
+  cursor: pointer;
+}
+
+.td {
+  border-style: solid none;
+  color: var(--table-inner-text);
+}
+
+.td:first-child {
+  border-left-style: solid;
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+}
+
+.td:last-child {
+  border-right-style: solid;
+  border-bottom-right-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+.unselectedIcon {
+  color: var(--selected-icon);
+}
+
+.eventClass {
+  background-color: var(--selected-icon);
+}
+
+.eventText {
+  color: var(--selected-icon);
+}
+
+.border {
+  border: 2px solid var(--border-outline);
+}
