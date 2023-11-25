@@ -31,7 +31,7 @@ export default async function Dashboard() {
 
   // const events = await fetchEvents();
   return (
-    <main className="flex flex-col-reverse lg:flex-row h-full justify-between   ">
+    <main className="flex flex-col-reverse h-full  lg:flex-row  justify-between   ">
       {/* <div className="flex flex-col     h-full w-full">
         <div className=" flex flex-col  h-full w-full   overflow-y-auto">
           <div className="flex justify-between pb-5 px-5 items-center">

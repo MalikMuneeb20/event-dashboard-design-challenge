@@ -13,9 +13,17 @@ import { AppDispatch, useAppSelector } from '@/app/redux/store';
 import { setFavEvents } from '@/app/redux/features/favourite-event-slice';
 import { setEvents } from '@/app/redux/features/event-slice';
 import Loader from './loader';
+import {
+  setEventOfTheMonth,
+  setUpcomingEvents,
+} from '@/app/redux/features/upcoming-event-slice';
+import { setLoading } from '@/app/redux/features/loader-slice';
 
 export default function DashboardPage() {
-  const [loading, setLoading] = useState(true);
+  const isLoading: boolean = useAppSelector(
+    (state) => state.loadingReducer.loading
+  );
+
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
@@ -24,10 +32,12 @@ export default function DashboardPage() {
         const events = await fetchEvents();
         dispatch(setFavEvents());
         dispatch(setEvents({ count: events.count, results: events.results }));
-        setLoading(false);
+        dispatch(setUpcomingEvents({ results: events.results }));
+        dispatch(setEventOfTheMonth({ results: events.results }));
+        dispatch(setLoading({ loading: false }));
       } catch (error) {
         console.error('Error fetching events:', error);
-        setLoading(false);
+        dispatch(setLoading({ loading: false }));
       }
     };
 
@@ -37,10 +47,10 @@ export default function DashboardPage() {
   return (
     // <Suspense fallback={<Loader />}>
     <>
-      {loading ? (
+      {isLoading ? (
         <Loader />
       ) : (
-        <>
+        <div className="flex overflow-auto flex-col-reverse pl-4 pr-4 lg:pl-0 lg:pr-0 lg:flex-row w-full">
           <div className="flex flex-col h-full w-full">
             <div
               className={`${classes.customEventHeight} flex flex-col w-full   overflow-y-auto`}
@@ -61,18 +71,25 @@ export default function DashboardPage() {
             <div className={`${classes.customEventCounterHeight} mt-4`}>
               <EventsCounter />
             </div>
-          </div>
-          <div className="flex flex-col  ml:0 lg:ml-4  h-full w-full lg:w-2/6">
-            <div className={`${classes.customUpcomingEventHeight} h-full`}>
-              <UpcomingEvents />
-            </div>
             <div
-              className={`${classes.customEventOfMonthHeight}  hidden lg:block  mt-4   h-2/5`}
+              className={`${classes.customEventOfMonthHeight}  lg:hidden block  mt-4  `}
             >
               <EventOfMonth />
             </div>
           </div>
-        </>
+          <div className="flex flex-col mt-5 lg:mt-0 ml:0 lg:ml-4  h-full w-full lg:w-2/6">
+            <div
+              className={`${classes.customUpcomingEventHeight} w-full h-full`}
+            >
+              <UpcomingEvents />
+            </div>
+            <div
+              className={`${classes.customEventOfMonthHeight} mb-5  hidden lg:block  mt-4  `}
+            >
+              <EventOfMonth />
+            </div>
+          </div>
+        </div>
       )}
       {/* </Suspense> */}
     </>

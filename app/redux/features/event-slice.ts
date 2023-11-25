@@ -1,20 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-interface EventState {
-  title: string;
-  id: string;
-  rank: number;
-  start: string;
-  country: string;
-  category: string;
-  description: string;
-  favourite: boolean;
-}
-
-interface InitialState {
-  count: number;
-  value: EventState[];
-}
+import { EventState, InitialState } from './data-types';
 
 const initialState: InitialState = {
   count: 0,
@@ -41,17 +27,22 @@ export const events = createSlice({
         const existingEvent = loadedState.value.find(
           (event) => event.id === result.id
         );
+        const existingValue = state.value.find(
+          (event) => event.id === result.id
+        );
 
-        state.value.push({
-          title: result.title,
-          id: result.id,
-          rank: result.rank,
-          start: result.start,
-          country: result.country,
-          category: result.category,
-          description: result.description,
-          favourite: existingEvent ? existingEvent.favourite : false,
-        });
+        if (!existingValue) {
+          state.value.push({
+            title: result.title,
+            id: result.id,
+            rank: result.rank,
+            start: result.start,
+            country: result.country,
+            category: result.category,
+            description: result.description,
+            favourite: existingEvent ? existingEvent.favourite : false,
+          });
+        }
       });
     },
     addEventtoFavourite: (state, action: PayloadAction<{ id: String }>) => {

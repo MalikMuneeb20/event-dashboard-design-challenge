@@ -1,29 +1,15 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-
-interface EventState {
-  title: string;
-  id: string;
-  rank: number;
-  start: string;
-  country: string;
-  category: string;
-  description: string;
-  favourite: boolean;
-}
-
-interface InitialState {
-  favCount: number;
-  value: EventState[];
-}
+import './data-types';
+import { EventState, InitialState } from './data-types';
 
 const initialState: InitialState = {
-  favCount: 0,
+  count: 0,
   value: [],
 };
 
 const loadFromLocalStorage = (): InitialState => {
   const storedData = localStorage.getItem('favEvents');
-  return storedData ? JSON.parse(storedData) : { favCount: 0, value: [] };
+  return storedData ? JSON.parse(storedData) : { count: 0, value: [] };
 };
 
 const saveToLocalStorage = (state: InitialState) => {
@@ -36,7 +22,7 @@ export const favEvents = createSlice({
   reducers: {
     setFavEvents: (state) => {
       const loadedState = loadFromLocalStorage();
-      state.favCount = loadedState.favCount;
+      state.count = loadedState.count;
       state.value = loadedState.value;
     },
     addEventToFavouriteEvents: (
@@ -51,7 +37,7 @@ export const favEvents = createSlice({
           (event) => event.id !== action.payload.result.id
         );
         state.value = updatedValue;
-        state.favCount = state.favCount - 1;
+        state.count = state.count - 1;
       } else {
         state.value.push({
           id: action.payload.result.id,
@@ -63,7 +49,7 @@ export const favEvents = createSlice({
           description: action.payload.result.description,
           favourite: true,
         });
-        state.favCount = state.favCount + 1;
+        state.count = state.count + 1;
       }
       saveToLocalStorage(state);
     },

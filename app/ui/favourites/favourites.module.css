@@ -46,17 +46,3 @@
 .border {
   border: 2px solid var(--border-outline);
 }
-
-.customEventHeight {
-  height: 75vh;
-}
-.customEventCounterHeight {
-  height: 13vh;
-}
-.customUpcomingEventHeight {
-  height: 65vh;
-}
-
-.customEventOfMonthHeight {
-  height: 23vh;
-}

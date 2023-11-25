@@ -14,6 +14,7 @@ import {
   setEvents,
   addEventtoFavourite,
 } from '@/app/redux/features/event-slice';
+import { addUpcomingEventtoFavourite } from '@/app/redux/features/upcoming-event-slice';
 
 const Spacer = () => {
   return (
@@ -38,7 +39,7 @@ interface CustomRowProps {
 }
 
 const CustomRow = ({ result }: CustomRowProps) => {
-  const [isFav, setIsFav] = useState(result.favourite);
+  const isFav = result.favourite;
 
   const dateTime = new Date(result.start);
   const day = dateTime.getDate();
@@ -54,7 +55,8 @@ const CustomRow = ({ result }: CustomRowProps) => {
   const toggleFav = () => {
     dispatch(addEventtoFavourite({ id: result.id }));
     dispatch(addEventToFavouriteEvents({ result }));
-    setIsFav(!isFav);
+
+    dispatch(addUpcomingEventtoFavourite({ id: result.id }));
   };
 
   return (

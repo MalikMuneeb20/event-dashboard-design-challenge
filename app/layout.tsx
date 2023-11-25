@@ -31,7 +31,7 @@ export default function RootLayout({
             <div className="h-full  w-full  pl-5">{children}</div>
           </div>
 
-          <div className="block md:hidden">{children}</div>
+          <div className="h-full   w-full block md:hidden">{children}</div>
         </ReduxProvider>
       </body>
     </html>

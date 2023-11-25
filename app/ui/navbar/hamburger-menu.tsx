@@ -22,7 +22,7 @@ const HamburgerMenu = ({ toggleMenu, clicked }: HamburgerMenuProps) => {
 
   return (
     <div
-      className={`${classes.hamBurger}  px-5 py-2 m-0 top-0 left-0 w-screen  absolute h-screen`}
+      className={`${classes.hamBurger}  px-5 py-2 m-0 top-0 left-0 w-screen z-50 absolute h-screen`}
     >
       <div className={`${classes.logoSection} w-full`}>
         <Image
