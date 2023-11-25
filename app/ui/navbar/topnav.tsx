@@ -5,11 +5,41 @@ import classes from '@/app/ui/navbar/topnav.module.css';
 import { FaSearch } from 'react-icons/fa';
 import HamburgerMenu from './hamburger-menu';
 
+import { fetchEvents, searchEvents } from '@/app/lib/events';
+import { Suspense, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, useAppSelector } from '@/app/redux/store';
+import { setFavEvents } from '@/app/redux/features/favourite-event-slice';
+import { setEvents } from '@/app/redux/features/event-slice';
+
+import {
+  setEventOfTheMonth,
+  setUpcomingEvents,
+} from '@/app/redux/features/upcoming-event-slice';
+import { setLoading } from '@/app/redux/features/loader-slice';
 const TopNav = () => {
   const [clicked, setClicked] = useState(false);
+  const [btn, setBtn] = useState('');
 
   const toggleMenu = () => {
     setClicked(!clicked);
+  };
+
+  const dispatch = useDispatch<AppDispatch>();
+
+  const searchAndDispatchEvents = async (item: string) => {
+    try {
+      dispatch(setLoading({ loading: true }));
+      const events = await searchEvents(item);
+
+      dispatch(setEvents({ count: events.count, results: events.results }));
+      dispatch(setUpcomingEvents({ results: events.results }));
+      dispatch(setEventOfTheMonth({ results: events.results }));
+      dispatch(setLoading({ loading: false }));
+    } catch (error) {
+      console.error('Error fetching events:', error);
+      dispatch(setLoading({ loading: false }));
+    }
   };
 
   return (
@@ -26,16 +56,23 @@ const TopNav = () => {
           />
         </div>
         <div
-          className={`${classes.searchContainer} flex flex-row rounded-full px-5 items-center w-10/12 sm:w-full md:w-2/4  md:py-3`}
+          className={`${classes.searchContainer} flex  flex-row rounded-full px-5 items-center w-10/12 sm:w-full md:w-2/4  md:py-3`}
         >
-          <div className="pr-3">
-            <FaSearch className={`${classes.iconColor}`} />
-          </div>
           <input
             type="text"
             placeholder="Search events..."
-            className={`search-input bg-transparent border-0 outline-none md:w-4/5 ${classes.iconColor}`}
+            onChange={(e) => setBtn(e.target.value)}
+            className={`search-input bg-transparent flex-grow border-0 outline-none md:w-4/5 ${classes.iconColor}`}
           />
+          <div
+            className="pr-3"
+            onClick={() => {
+              searchAndDispatchEvents(btn);
+              console.log('Hello');
+            }}
+          >
+            <FaSearch className={`${classes.iconColor} cursor-pointer  `} />
+          </div>
         </div>
       </div>
       <div className={`pl-2 block md:hidden`}>
