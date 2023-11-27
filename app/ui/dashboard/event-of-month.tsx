@@ -24,59 +24,60 @@ const EventOfMonthCard = ({ title, count }: EventOfMonthItems) => {
   const padWithZero = (value: number) => (value < 10 ? `0${value}` : value);
   return (
     <div
-      className={`${classes.eventClass}  w-full  flex flex-col px-6 py-7 justify-evenly  rounded-xl h-full`}
+      className={`${classes.eventClass} w-full flex flex-col px-4 md:px-6 lg:px-8 py-4 md:py-7 justify-evenly rounded-xl h-full`}
     >
-      <div className="flex  justify-between">
-        <div className={`text-2xl lg:text-3xl text-white font-bold`}>
+      <div className="flex flex-col md:flex-row justify-between items-center">
+        <div
+          className={`text-xl lg:text-2xl text-white font-bold mb-2 md:mb-0`}
+        >
           {title}
         </div>
         <Image
           src={'/icons/zondicons_badge.svg'}
           alt={'Achievement Sign'}
-          width={80}
-          height={80}
+          width={60}
+          height={60}
         />
       </div>
 
       <div
         className={`${
           eventOfTheMonth.title == '' ? classes.noEvent : classes.eventOfMonth
-        } flex flex-col px-4 py-4 rounded-xl bg-white h-3/5`}
+        } flex flex-col px-4 py-4 rounded-xl bg-white mt-4 md:mt-0 h-auto md:h-3/5 overflow-auto`}
       >
         {eventOfTheMonth.title == '' ? (
           <div
-            className={`${classes.textColor}  text-center l font-normal text-md`}
+            className={`${classes.textColor} text-center font-normal text-md`}
           >
-            {' '}
             No Event Found
           </div>
         ) : (
           <>
-            <div className={`flex flex-row  font-bold text-lg`}>
-              <div className={`${classes.eventText}`}>
+            <div className={`flex flex-col font-bold text-lg mb-2`}>
+              <div className={`${classes.eventText} mb-1`}>
                 {eventOfTheMonth.title}
               </div>
-            </div>
-            <div
-              className={`${classes.textColor} flex flex-row justify-between font-normal text-md`}
-            >
-              <div className={``}>
-                Category:{' '}
-                <span className="font-bold">{eventOfTheMonth.category}</span>
+              <div
+                className={`${classes.textColor} flex justify-between font-normal text-md mb-1`}
+              >
+                <div>
+                  Category:{' '}
+                  <span className="font-bold">{eventOfTheMonth.category}</span>
+                </div>
+                <div>{`${day}-${month}-${year}`}</div>
               </div>
-              <div>{`${day}-${month}-${year}`}</div>
-            </div>
-            <div
-              className={`${classes.textColor} flex flex-row justify-between font-normal text-md`}
-            >
-              <div className={`flex item-center`}>
-                <FaLocationDot
-                  className={`${classes.unselectedIcon} pr-2`}
-                  size={20}
-                />{' '}
-                {eventOfTheMonth.country}
+              <div
+                className={`${classes.textColor} flex justify-between font-normal text-md`}
+              >
+                <div className={`flex items-center`}>
+                  <FaLocationDot
+                    className={`${classes.unselectedIcon} pr-2`}
+                    size={20}
+                  />{' '}
+                  {eventOfTheMonth.country}
+                </div>
+                <div>{`${padWithZero(hours)}:${padWithZero(minutes)}`}</div>
               </div>
-              <div>{`${padWithZero(hours)}:${padWithZero(minutes)}`}</div>
             </div>
           </>
         )}

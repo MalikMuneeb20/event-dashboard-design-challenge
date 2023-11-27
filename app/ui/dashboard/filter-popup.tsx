@@ -2,15 +2,9 @@ import { useState } from 'react';
 import { Popover } from '@headlessui/react';
 import { IoFilterSharp, IoSearch } from 'react-icons/io5';
 import classes from './dashboard.module.css';
-import {
-  fetchEvents,
-  filterEventByCategory,
-  searchEvents,
-} from '@/app/lib/events';
-import { Suspense, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, useAppSelector } from '@/app/redux/store';
-import { setFavEvents } from '@/app/redux/features/favourite-event-slice';
+import { filterEventByCategory } from '@/app/lib/events';
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '@/app/redux/store';
 import { setEvents } from '@/app/redux/features/event-slice';
 import { setLoading } from '@/app/redux/features/loader-slice';
 import {

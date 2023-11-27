@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import classes from './dashboard.module.css';
 import { FaRegHeart, FaHeart } from 'react-icons/fa';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { AppDispatch, useAppSelector } from '@/app/redux/store';
 import { addEventtoFavourite } from '@/app/redux/features/event-slice';
 import { addEventToFavouriteEvents } from '@/app/redux/features/favourite-event-slice';
@@ -34,7 +34,6 @@ const CustomUpcomingEventCard = ({ result }: CustomRowProps) => {
   const month = dateTime.getMonth() + 1;
   const hours = dateTime.getHours();
   const minutes = dateTime.getMinutes();
-  const seconds = dateTime.getSeconds();
   const padWithZero = (value: number) => (value < 10 ? `0${value}` : value);
 
   const dispatch = useDispatch<AppDispatch>();

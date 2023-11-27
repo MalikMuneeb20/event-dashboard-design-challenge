@@ -2,22 +2,16 @@
 import React, { Suspense, useEffect, useState } from 'react';
 import classes from './dashboard.module.css';
 import { FaRegHeart, FaHeart, FaSort } from 'react-icons/fa';
-import { fetchEvents } from '@/app/lib/events';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { AppDispatch, useAppSelector } from '@/app/redux/store';
 
+import { addEventToFavouriteEvents } from '@/app/redux/features/favourite-event-slice';
 import {
-  addEventToFavouriteEvents,
-  setFavEvents,
-} from '@/app/redux/features/favourite-event-slice';
-import {
-  setEvents,
   addEventtoFavourite,
   sortEventinOrder,
 } from '@/app/redux/features/event-slice';
 import { addUpcomingEventtoFavourite } from '@/app/redux/features/upcoming-event-slice';
 import {
-  setLoading,
   setIsModelOpen,
   addEventToModal,
 } from '@/app/redux/features/loader-slice';
@@ -166,16 +160,7 @@ const EventsList = () => {
             <Spacer />
             {results.map((result) => (
               <React.Fragment>
-                <CustomRow
-                  result={result}
-                  // id={index.id}
-                  // name={index.title}
-                  // time={index.start}
-                  // date={index.start}
-                  // location={index.country}
-                  // favourite={index.favourite}
-                  // rank={index.rank}
-                />
+                <CustomRow result={result} />
                 <Spacer />
               </React.Fragment>
             ))}

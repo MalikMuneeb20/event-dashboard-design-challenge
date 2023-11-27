@@ -164,16 +164,7 @@ const FavouritesPage = () => {
                 <Spacer />
                 {results.map((result) => (
                   <React.Fragment>
-                    <CustomRow
-                      result={result}
-                      // id={index.id}
-                      // name={index.title}
-                      // time={index.start}
-                      // date={index.start}
-                      // location={index.country}
-                      // favourite={index.favourite}
-                      // rank={index.rank}
-                    />
+                    <CustomRow result={result} />
                     <Spacer />
                   </React.Fragment>
                 ))}

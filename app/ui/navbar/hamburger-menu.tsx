@@ -4,7 +4,6 @@ import React from 'react';
 import classes from '@/app/ui/navbar/topnav.module.css';
 import Image from 'next/image';
 import { FaTimes } from 'react-icons/fa';
-import Link from 'next/link';
 import CustomLink from './custom-link';
 
 interface HamburgerMenuProps {

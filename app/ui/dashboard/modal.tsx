@@ -1,19 +1,10 @@
 import classes from './dashboard.module.css';
 import { RxCross1 } from 'react-icons/rx';
-
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, useAppSelector } from '@/app/redux/store';
-import { setFavEvents } from '@/app/redux/features/favourite-event-slice';
-import { setEvents } from '@/app/redux/features/event-slice';
 import { setIsModelOpen, setLoading } from '@/app/redux/features/loader-slice';
 import { EventState } from '@/app/redux/features/data-types';
 import { MdPinDrop } from 'react-icons/md';
-
-interface ModalItems {
-  show: boolean;
-  setShow: Function;
-  // event: Event;
-}
 
 const Modal = () => {
   const showModal: boolean = useAppSelector(
