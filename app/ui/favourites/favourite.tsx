@@ -17,6 +17,7 @@ import {
   setLoading,
 } from '../../redux/features/loader-slice';
 import Loader from '../../ui/dashboard/loader';
+import Modal from '../dashboard/modal';
 
 const Spacer = () => {
   return (
@@ -133,6 +134,7 @@ const FavouritesPage = () => {
         <Loader />
       ) : (
         <div>
+          <Modal />
           <div className="flex justify-between pb-5 px-5 items-center">
             <div className="text-xl font-semibold">Favourite Events</div>
           </div>
