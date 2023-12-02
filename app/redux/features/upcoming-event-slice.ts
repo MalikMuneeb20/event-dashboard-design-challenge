@@ -36,7 +36,7 @@ export const upcomingEvents = createSlice({
       const currentDate = new Date();
       const currentMonth = currentDate.getMonth() + 1;
       const currentYear = currentDate.getFullYear();
-
+      state.value = [];
       state.count = 0;
 
       action.payload.results.forEach((result: EventState) => {

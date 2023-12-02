@@ -21,6 +21,7 @@ export const events = createSlice({
       action: PayloadAction<{ count: number; results: EventState[] }>
     ) => {
       const loadedState = loadFromLocalStorage();
+      state.value = [];
       console.log(action.payload.count);
       state.count = action.payload.count;
       action.payload.results.forEach((result: EventState) => {
